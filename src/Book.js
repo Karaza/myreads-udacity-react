@@ -15,13 +15,13 @@ class Book extends React.Component {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: book.cover
+              backgroundImage: `url(${book.imageLinks.smallThumbnail})`
             }}
           ></div>
           <BookshelfChanger shelf={shelf} />
         </div>
         <div className="book-title">{book.title}</div>
-        <div className="book-authors">{book.author}</div>
+        <div className="book-authors">{book.authors}</div>
       </div>
     );
   }

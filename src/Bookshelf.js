@@ -15,7 +15,7 @@ class Bookshelf extends React.Component {
           <ol className="books-grid">
             {booksOnThisShelf.map(book => (
               <Book
-                key={book.title} // Change to id when using API
+                key={book.id}
                 book={book}
                 // pass the shelf to know where the book is
                 shelf={shelf.key}
