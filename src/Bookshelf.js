@@ -17,7 +17,8 @@ class Bookshelf extends React.Component {
               <Book
                 key={book.title} // Change to id when using API
                 book={book}
-                // shelf={shelf.key}
+                // pass the shelf to know where the book is
+                shelf={shelf.key}
               />
             ))}
           </ol>

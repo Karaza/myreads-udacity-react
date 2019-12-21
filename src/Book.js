@@ -1,9 +1,11 @@
 import React from 'react';
+import BookshelfChanger from './BookshelfChanger';
 
 class Book extends React.Component {
   render() {
-    const { book } = this.props;
-    // const { book, shelf } = this.props;
+    // const { book } = this.props;
+    const { book, shelf } = this.props;
+    // Add shelf to know where the book is and pass it to the BookshelfChanger
 
     return (
       <div className="book">
@@ -16,17 +18,7 @@ class Book extends React.Component {
               backgroundImage: book.cover
             }}
           ></div>
-          <div className="book-shelf-changer">
-            <select>
-              <option value="move" disabled>
-                Move to...
-              </option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
-              <option value="none">None</option>
-            </select>
-          </div>
+          <BookshelfChanger shelf={shelf} />
         </div>
         <div className="book-title">{book.title}</div>
         <div className="book-authors">{book.author}</div>
