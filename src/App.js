@@ -84,6 +84,7 @@ class BooksApp extends React.Component {
           render={() => (
             <SearchBooks
               searchBooks={searchBooks}
+              myBooks={myBooks}
               onSearch={this.searchForBooks}
               onResetSearch={this.resetSearch}
               onMove={this.moveBook}

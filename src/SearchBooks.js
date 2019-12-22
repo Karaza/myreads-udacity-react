@@ -5,7 +5,13 @@ import SearchBooksResults from './SearchBooksResults';
 
 class SearchBooks extends React.Component {
   render() {
-    const { searchBooks, onSearch, onResetSearch } = this.props;
+    const {
+      searchBooks,
+      myBooks,
+      onSearch,
+      onResetSearch,
+      onMove
+    } = this.props;
 
     return (
       <div className="search-books">
@@ -15,7 +21,11 @@ class SearchBooks extends React.Component {
           </Link>
           <SearchBooksInput onSearch={onSearch} />
         </div>
-        <SearchBooksResults searchBooks={searchBooks} />
+        <SearchBooksResults
+          searchBooks={searchBooks}
+          myBooks={myBooks}
+          onMove={onMove}
+        />
       </div>
     );
   }
