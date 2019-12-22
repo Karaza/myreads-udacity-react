@@ -2,11 +2,14 @@ import React from 'react';
 
 class SearchBooksInput extends React.Component {
   state = {
-    query: ''
+    search: ''
   };
 
-  updateQuery = oldQuery => {
-    this.setState({ query: oldQuery.trim() });
+  handleSearch = e => {
+    const query = e.target.value;
+    this.setState({ search: query }, () => {
+      this.props.onSearch(query);
+    });
   };
 
   render() {
@@ -15,8 +18,8 @@ class SearchBooksInput extends React.Component {
         <input
           type="text"
           placeholder="Search by title or author"
-          value={this.state.query}
-          onChange={e => this.updateQuery(e.target.value)}
+          value={this.state.search}
+          onChange={this.handleSearch}
         />
       </div>
     );

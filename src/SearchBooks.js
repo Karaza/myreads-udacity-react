@@ -11,7 +11,7 @@ class SearchBooks extends React.Component {
           <Link className="close-search" to="/">
             Close Search
           </Link>
-          <SearchBooksInput />
+          <SearchBooksInput onSearch={this.props.onSearch} />
         </div>
         <SearchBooksResults />
       </div>
