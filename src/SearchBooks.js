@@ -13,7 +13,7 @@ class SearchBooks extends React.Component {
           </Link>
           <SearchBooksInput onSearch={this.props.onSearch} />
         </div>
-        <SearchBooksResults />
+        <SearchBooksResults searchBooks={this.props.searchBooks} />
       </div>
     );
   }
