@@ -1,32 +1,28 @@
 import React from 'react';
 import Book from './Book';
 
-class Bookshelf extends React.Component {
-  render() {
-    const { shelf, books, onMove } = this.props;
+const Bookshelf = props => {
+  const { shelf, books, onMove } = props;
+  const booksOnThisShelf = books.filter(book => book.shelf === shelf.key);
 
-    const booksOnThisShelf = books.filter(book => book.shelf === shelf.key);
-    // console.log(booksOnThisShelf);
-
-    return (
-      <div className="bookshelf">
-        <h2 className="bookshelf-title">{shelf.name}</h2>
-        <div className="bookshelf-books">
-          <ol className="books-grid">
-            {booksOnThisShelf.map(book => (
-              <Book
-                key={book.id}
-                book={book}
-                // pass the shelf to know where the book is
-                shelf={shelf.key}
-                onMove={onMove}
-              />
-            ))}
-          </ol>
-        </div>
+  return (
+    <div className="bookshelf">
+      <h2 className="bookshelf-title">{shelf.name}</h2>
+      <div className="bookshelf-books">
+        <ol className="books-grid">
+          {booksOnThisShelf.map(book => (
+            <Book
+              key={book.id}
+              book={book}
+              // pass the shelf to know where the book is
+              shelf={shelf.key}
+              onMove={onMove}
+            />
+          ))}
+        </ol>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Bookshelf;

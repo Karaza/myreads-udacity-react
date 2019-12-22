@@ -20,9 +20,14 @@ class BooksApp extends React.Component {
   };
 
   componentDidMount() {
-    BooksAPI.getAll().then(books => {
-      this.setState({ myBooks: books });
-    });
+    BooksAPI.getAll()
+      .then(books => {
+        this.setState({ myBooks: books });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ error: true });
+      });
   }
 
   moveBook = (book, shelf) => {
@@ -64,7 +69,11 @@ class BooksApp extends React.Component {
   };
 
   render() {
-    const { myBooks, searchBooks } = this.state;
+    const { myBooks, searchBooks, error } = this.state;
+
+    if (error) {
+      return <div>Network error. Please try again later.</div>;
+    }
 
     return (
       <div className="app">
