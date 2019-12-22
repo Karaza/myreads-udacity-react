@@ -3,7 +3,7 @@ import BookshelfChanger from './BookshelfChanger';
 
 class Book extends React.Component {
   render() {
-    const { book, shelf } = this.props;
+    const { book, shelf, onMove } = this.props;
     // Add shelf to know where the book is and pass it to the BookshelfChanger
 
     return (
@@ -21,7 +21,7 @@ class Book extends React.Component {
               })`
             }}
           ></div>
-          <BookshelfChanger shelf={shelf} />
+          <BookshelfChanger book={book} shelf={shelf} onMove={onMove} />
         </div>
         <div className="book-title">{book.title}</div>
         <div className="book-authors">{book.authors}</div>

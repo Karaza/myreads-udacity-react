@@ -71,7 +71,13 @@ class BooksApp extends React.Component {
         <Route
           exact
           path="/"
-          render={() => <ListBooks bookshelves={bookshelves} books={myBooks} />}
+          render={() => (
+            <ListBooks
+              bookshelves={bookshelves}
+              books={myBooks}
+              onMove={this.moveBook}
+            />
+          )}
         />
         <Route
           path="/search"
@@ -80,6 +86,7 @@ class BooksApp extends React.Component {
               searchBooks={searchBooks}
               onSearch={this.searchForBooks}
               onResetSearch={this.resetSearch}
+              onMove={this.moveBook}
             />
           )}
         />

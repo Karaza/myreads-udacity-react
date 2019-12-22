@@ -4,7 +4,7 @@ import Bookshelf from './Bookshelf';
 
 class ListBooks extends React.Component {
   render() {
-    const { bookshelves, books } = this.props;
+    const { bookshelves, books, onMove } = this.props;
 
     return (
       <div className="list-books">
@@ -14,7 +14,12 @@ class ListBooks extends React.Component {
         <div className="list-books-content">
           <div>
             {bookshelves.map(shelf => (
-              <Bookshelf key={shelf.key} shelf={shelf} books={books} />
+              <Bookshelf
+                key={shelf.key}
+                shelf={shelf}
+                books={books}
+                onMove={onMove}
+              />
             ))}
           </div>
         </div>
