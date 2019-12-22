@@ -25,6 +25,25 @@ class BooksApp extends React.Component {
     });
   }
 
+  moveBook = (book, shelf) => {
+    BooksAPI.update(book, shelf).catch(err => {
+      console.log(err);
+      this.setState({ error: true });
+    });
+    // If select 'none' in the BookshelfChanger, remove the book from myBooks
+    if (shelf === 'none') {
+      this.setState(prevState => ({
+        myBooks: prevState.myBooks.filter(b => b.id !== book.id)
+      }));
+    } else {
+      // Else, update with the new selected shelf and concat with current myBooks
+      book.shelf = shelf;
+      this.setState(prevState => ({
+        myBooks: prevState.myBooks.filter(b => b.id !== book.id).concat(book)
+      }));
+    }
+  };
+
   // Debounce (from the throttle-debounce package) is used for rate limiting execution of handlers
   searchForBooks = debounce(300, false, query => {
     if (query.length > 0) {
