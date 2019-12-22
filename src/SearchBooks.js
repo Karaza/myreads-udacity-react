@@ -5,15 +5,17 @@ import SearchBooksResults from './SearchBooksResults';
 
 class SearchBooks extends React.Component {
   render() {
+    const { searchBooks, onSearch, onResetSearch } = this.props;
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <Link className="close-search" to="/">
+          <Link className="close-search" to="/" onClick={onResetSearch}>
             Close Search
           </Link>
-          <SearchBooksInput onSearch={this.props.onSearch} />
+          <SearchBooksInput onSearch={onSearch} />
         </div>
-        <SearchBooksResults searchBooks={this.props.searchBooks} />
+        <SearchBooksResults searchBooks={searchBooks} />
       </div>
     );
   }

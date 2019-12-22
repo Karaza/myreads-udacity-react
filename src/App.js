@@ -14,13 +14,14 @@ const bookshelves = [
 
 class BooksApp extends React.Component {
   state = {
-    books: [],
-    searchBooks: []
+    myBooks: [],
+    searchBooks: [],
+    error: false
   };
 
   componentDidMount() {
     BooksAPI.getAll().then(books => {
-      this.setState({ books });
+      this.setState({ myBooks: books });
     });
   }
 
@@ -28,29 +29,38 @@ class BooksApp extends React.Component {
   searchForBooks = debounce(300, false, query => {
     if (query.length > 0) {
       BooksAPI.search(query).then(books => {
-        this.setState({ searchBooks: books });
+        if (books.error) {
+          this.setState({ searchBooks: [] });
+        } else {
+          this.setState({ searchBooks: books });
+        }
       });
     } else {
       this.setState({ searchBooks: [] });
     }
   });
 
+  resetSearch = () => {
+    this.setState({ searchBooks: [] });
+  };
+
   render() {
+    const { myBooks, searchBooks } = this.state;
+
     return (
       <div className="app">
         <Route
           exact
           path="/"
-          render={() => (
-            <ListBooks bookshelves={bookshelves} books={this.state.books} />
-          )}
+          render={() => <ListBooks bookshelves={bookshelves} books={myBooks} />}
         />
         <Route
           path="/search"
           render={() => (
             <SearchBooks
+              searchBooks={searchBooks}
               onSearch={this.searchForBooks}
-              searchBooks={this.state.searchBooks}
+              onResetSearch={this.resetSearch}
             />
           )}
         />

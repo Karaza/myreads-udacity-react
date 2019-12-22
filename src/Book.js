@@ -3,7 +3,6 @@ import BookshelfChanger from './BookshelfChanger';
 
 class Book extends React.Component {
   render() {
-    // const { book } = this.props;
     const { book, shelf } = this.props;
     // Add shelf to know where the book is and pass it to the BookshelfChanger
 
@@ -15,7 +14,11 @@ class Book extends React.Component {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url(${book.imageLinks.smallThumbnail})`
+              backgroundImage: `url(${
+                book.imageLinks
+                  ? book.imageLinks.thumbnail
+                  : 'icons/book-placeholder.svg'
+              })`
             }}
           ></div>
           <BookshelfChanger shelf={shelf} />

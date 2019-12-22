@@ -2,14 +2,15 @@ import React from 'react';
 
 class SearchBooksInput extends React.Component {
   state = {
-    search: ''
+    searchValue: ''
   };
 
   handleSearch = e => {
     const query = e.target.value;
-    this.setState({ search: query }, () => {
+    this.setState({ searchValue: query }, () => {
       this.props.onSearch(query);
     });
+    // console.log(this.state);
   };
 
   render() {
@@ -18,8 +19,9 @@ class SearchBooksInput extends React.Component {
         <input
           type="text"
           placeholder="Search by title or author"
-          value={this.state.search}
+          value={this.state.searchValue}
           onChange={this.handleSearch}
+          autoFocus
         />
       </div>
     );
